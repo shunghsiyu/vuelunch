@@ -1,6 +1,6 @@
 <template>
   <div class="restaurant_menu">
-    <ul>
+    <ul class="menu_items">
       <li v-for="menuItem in menuItems">
         <span class="item_name" v-text="menuItem.name"></span>
         <span class="item_price">
