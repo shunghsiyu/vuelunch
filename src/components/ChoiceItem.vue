@@ -1,7 +1,7 @@
 <template>
   <li class="choice-item">
     <input type="checkbox" ref="checkbox" @click="onClick">
-    <span v-text="restaurant.name" @click="forwardClick"></span>
+    <span class="restaurant-name" v-text="restaurant.name" @click="forwardClick"></span>
   </li>
 </template>
 
