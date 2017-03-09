@@ -3,7 +3,7 @@
     <ul>
       <li is="choice-item" v-for="choiceItem in choiceItems" :choiceItem="choiceItem"></li>
     </ul>
-    <button type="button" @click="vote">Vote</button>
+    <button id="vote" type="button" @click="vote">Vote</button>
   </div>
 </template>
 
@@ -41,7 +41,10 @@ export default {
       })
     },
     votable () {
-      let voteCount = this.$children.filter(it => it.$refs.checkbox.checked === true).length
+      let voteCount = this.$children.filter(it => it.checked === true).length
+      // Less than or equal is used here because this function is called after a checkbox is clicked
+      // Thus its 'checked' property is already set to
+      // true.
       return voteCount <= MAX_VOTES
     },
     vote () {
@@ -54,7 +57,7 @@ export default {
     },
     voteAllChecked () {
       let itemsToVote = this.$children
-        .filter(it => it.$refs.checkbox.checked === true)
+        .filter(it => it.checked === true)
         .map(it => it.choiceItem.id)
       return Promise.all(
         itemsToVote.map(choiceId => {
