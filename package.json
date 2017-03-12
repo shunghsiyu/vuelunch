@@ -1,6 +1,6 @@
 {
   "name": "vuelunch",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Frontend for djangolunch",
   "author": "Shung-Hsi Yu <shunghsiyu@gmail.com>",
   "private": true,
