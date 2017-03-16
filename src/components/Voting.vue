@@ -1,13 +1,13 @@
 <template>
   <div class="voting" v-cloak>
     <h1 v-text="title"></h1>
-    <p class="explanation"><strong>說明：</strong>請點擊「餐廳名稱」以選擇想投的餐廳 (再點一次取消)，選好後點最下面的「投票」按鈕。</p>
+    <p class="explanation"><strong>說明：</strong>請點擊「餐廳名稱」以選擇想投的餐廳 (再點一次取消)，選好後點最下面的「我選好了」按鈕。</p>
     <p class="explanation">每個人最多 5 票。</p>
     <ul>
       <li is="choice-item" v-for="choiceItem in choiceItems" :choiceItem="choiceItem"></li>
     </ul>
     <div class="footer" @click="vote">
-      <span id="vote">投票</span>
+      <span id="vote">我選好了</span>
     </div>
   </div>
 </template>
@@ -86,6 +86,10 @@ h1 {
 
 .explanation {
   margin: 20px 10%;
+}
+
+ul {
+  padding-bottom: 100px;
 }
 
 .footer {

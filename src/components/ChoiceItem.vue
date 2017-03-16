@@ -64,7 +64,7 @@ li {
   -ms-user-select: none;
   user-select: none;
   text-align: center;
-  margin: 5px 20%;
+  margin: 15px 20%;
   border-radius: 50px;
   padding: 5px 0;
   border: 2px solid @olive;
