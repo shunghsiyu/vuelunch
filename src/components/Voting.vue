@@ -1,5 +1,6 @@
 <template>
   <div class="voting">
+    <h2 v-text="title"></h2>
     <ul>
       <li is="choice-item" v-for="choiceItem in choiceItems" :choiceItem="choiceItem"></li>
     </ul>
@@ -28,7 +29,8 @@ export default {
   },
   data () {
     return {
-      choiceItems: []
+      choiceItems: [],
+      title: ''
     }
   },
   methods: {
@@ -38,6 +40,9 @@ export default {
     fetchData () {
       simpleApi(client => client.questions.questions_choices_list({question_pk: this.questionId}), list => {
         this.choiceItems = list
+      })
+      simpleApi(client => client.questions.questions_read({id: this.questionId}), question => {
+        this.title = question.question_text
       })
     },
     votable () {
