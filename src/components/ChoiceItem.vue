@@ -1,18 +1,20 @@
 <template>
   <li class="choice-item">
-    <input type="checkbox" ref="checkbox" @click="onClick">
-    <span class="restaurant-name" v-text="restaurant.name" @click="forwardClick"></span>
+    <input type="checkbox" ref="checkbox" @click="onClick" :id="restaurantNameHash" :name="restaurantNameHash" v-model="checked">
+    <label class="restaurant-name" :for="restaurantNameHash" v-text="restaurant.name"></label>
   </li>
 </template>
 
 <script>
+import { checksum } from '../util'
 import { simpleApi } from '../api'
 
 export default {
   props: ['choiceItem'],
   data () {
     return {
-      restaurant: {}
+      restaurant: {},
+      checked: false
     }
   },
   created () {
@@ -22,6 +24,7 @@ export default {
     onClick (event) {
       if (!this.$parent.votable()) {
         event.preventDefault()
+        this.checked = false
         window.alert('Too many votes!')
       }
     },
@@ -36,8 +39,8 @@ export default {
     }
   },
   computed: {
-    checked () {
-      return this.$refs.checkbox.checked
+    restaurantNameHash () {
+      return checksum(this.restaurant.name)
     }
   }
 }
