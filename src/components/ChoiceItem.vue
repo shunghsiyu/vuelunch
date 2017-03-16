@@ -26,7 +26,7 @@ export default {
       } else if (!this.$parent.votable()) {
         event.preventDefault()
         this.checked = false
-        window.alert('Too many votes!')
+        window.alert('不能投那麼多票喔！')
       } else {
         this.checked = true
       }
