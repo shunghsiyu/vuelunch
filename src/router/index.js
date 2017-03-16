@@ -4,6 +4,7 @@ import Landing from '../components/Landing'
 import Questions from '../components/Questions'
 import Restaurants from '../components/Restaurants'
 import RestaurantDetail from '../components/RestaurantDetail'
+import Result from '../components/Result'
 import Voting from '../components/Voting'
 
 Vue.use(Router)
@@ -35,6 +36,12 @@ export default new Router({
       path: '/voting/:questionId',
       name: 'Voting',
       component: Voting,
+      props: true
+    },
+    {
+      path: '/voting-result',
+      name: 'Result',
+      component: Result,
       props: true
     }
   ]

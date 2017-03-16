@@ -1,7 +1,6 @@
 <template>
-  <li class="choice-item">
-    <input type="checkbox" ref="checkbox" @click="onClick" :id="restaurantNameHash" :name="restaurantNameHash" v-model="checked">
-    <label class="restaurant-name" :for="restaurantNameHash" v-text="restaurant.name"></label>
+  <li v-cloak class="choice-item" :class="{checked: checked}" @click="onClick">
+    <span class="restaurant-name" v-text="restaurant.name"></span>
   </li>
 </template>
 
@@ -22,10 +21,14 @@ export default {
   },
   methods: {
     onClick (event) {
-      if (!this.$parent.votable()) {
+      if (this.checked) {
+        this.checked = false
+      } else if (!this.$parent.votable()) {
         event.preventDefault()
         this.checked = false
         window.alert('Too many votes!')
+      } else {
+        this.checked = true
       }
     },
     forwardClick (event) {
@@ -46,12 +49,43 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+@green: #2ECC40;
+@olive: #3D9970;
+
 li {
   list-style: none;
+}
+
+.choice-item {
+  cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  text-align: center;
+  margin: 5px 20%;
+  border-radius: 50px;
+  padding: 5px 0;
+  border: 2px solid @olive;
+  color: @olive;
+
+  &.checked {
+    border: 2px solid @olive;
+    background-color: @olive;
+    color: white;
+
+    .restaurant-name:before {
+      content: "✓ "
+    }
+  }
+}
+
+.restaurant-name {
+  font-size: 1.3em;
+}
+
+input {
+  display: none;
 }
 </style>
